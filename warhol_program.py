@@ -13,14 +13,16 @@ def makegraypic():
     newBlue=getBlue(px)*0.114
     agg=newRed+newGreen+newBlue
     setColor(px,makeColor(agg, agg, agg))
+  return graypic
 
-noRedpic=duplicatePicture(pic)
-def makenoRedpic(noRedpic):
-  for px in getPixels(noRedpic):
-    R=0
+def makecolorSwappic():
+  colorSwappic=duplicatePicture(pic)
+  for px in getPixels(colorSwappic):
+    R=getRed(px)
     G=getGreen(px)
     B=getBlue(px)
-    setColor(px,makeColor(R, G, B)) 
+      setColor(px,makeColor(B, R, G))
+  return colorSwappic
 
 def makenegpic():
   negpic=duplicatePicture(pic)
@@ -30,11 +32,12 @@ def makenegpic():
     B=getBlue(px)
     negColor=makeColor(255-R, 255-G, 255-B)
     setColor=(px, negColor)
+  return negpic
 
 
 def copyfunc():
   copyInto(pic, bigpic, 0, 0)
   copyInto(graypic, bigpic, w, 0)
-  copyInto(noRedpic, bigpic, 0, h)
+  copyInto(colorSwappic, bigpic, 0, h)
   copyInto(negpic, bigpic, w, h)
   
